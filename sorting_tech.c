@@ -64,7 +64,7 @@ int main()
 }*/
 //quick sort
 
-void swap(int *a,int *b)
+/*void swap(int *a,int *b)
 {
 	int t;
 	t=*a;
@@ -111,4 +111,66 @@ int main()
 		printf("%d ",arr[i]);
 	}
 }
+*/
+void merge(int arr[], int left, int mid, int right)
+{
+	//creating temp arrays for left and right first calculate the size
+	int s1=mid-left+1;
+	int s2=right-mid;
+	int l[s1],r[s2];
+	// copying data into it.
+	int i,j;
+	for(i=0;i<s1;i++)
+	{
+		l[i]=arr[left+i];
+	}
+	for(j=0;j<s2;j++)
+	{
+		r[j]=arr[mid+j+1];
+	}
+	i=0,j=0;
+	int k=left;
+	//comparing and copying elements back to main array
+	while(i<s1 && j < s2)
+	{
+		if(l[i]<= r[j])
+		{
+			arr[k++]=l[i++];
+		}
+		else
+		{
+			arr[k++]=r[j++];
+		}
 
+	}
+	while(i<s1)
+	{
+		arr[k++]=l[i++];
+	}
+	while(j<s2)
+	{
+		arr[k++]=r[j++];
+	}
+
+}
+void merge_sort(int arr[], int left, int right)
+{
+	if(left<right)
+	{
+		int mid=left+(right-left)/2;
+		merge_sort(arr, left, mid);
+		merge_sort(arr, mid+1, right);
+		merge(arr, left, mid, right);
+	}
+}
+int main()
+{
+	int arr[]={3,6,2,4,5,1};
+	int s=sizeof(arr)/sizeof(arr[0]);
+	int i=0;
+	merge_sort(arr, 0, s-1);
+	for(i=0;i<s;i++)
+	{
+		printf("%d ",arr[i]);
+	}
+}	
