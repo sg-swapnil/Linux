@@ -4,9 +4,10 @@ int convert_lit_big(int var)
 {
 
 	union data{
-		uint32_t num;
-		uint8_t arr[4];//array of 4 integer each size is 8bits to access the 1byte at a time
-	}src,des;
+		int num;
+		char arr[4];//array of 4 integer each size is 8bits to access the 1byte at a time
+	};
+	union data src,des;
 	src.num=var;
 	des.arr[0]=src.arr[3];
 	des.arr[1]=src.arr[2];
