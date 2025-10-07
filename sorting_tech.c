@@ -112,63 +112,59 @@ int main()
 	}
 }
 */
-void merge(int arr[], int left, int mid, int right)
+void merge(int *arr, int *left, int mid,int *right,int end)
 {
-	//creating temp arrays for left and right first calculate the size
-	int s1=mid-left+1;
-	int s2=right-mid;
-	int l[s1],r[s2];
-	// copying data into it.
-	int i,j;
-	for(i=0;i<s1;i++)
+	int i=0,j=0,k=0;
+	while(i<mid && j < end)
 	{
-		l[i]=arr[left+i];
-	}
-	for(j=0;j<s2;j++)
-	{
-		r[j]=arr[mid+j+1];
-	}
-	i=0,j=0;
-	int k=left;
-	//comparing and copying elements back to main array
-	while(i<s1 && j < s2)
-	{
-		if(l[i]<= r[j])
+		if(left[i]<right[j])
 		{
-			arr[k++]=l[i++];
+			arr[k++]=left[i++];
 		}
 		else
 		{
-			arr[k++]=r[j++];
+			arr[k++]=right[j++];
 		}
 
 	}
-	while(i<s1)
+	while(i<mid)
 	{
-		arr[k++]=l[i++];
+		arr[k++]=left[i++];
 	}
-	while(j<s2)
+	while(j<end)
 	{
-		arr[k++]=r[j++];
+		arr[k++]=right[j++];
 	}
 
 }
-void merge_sort(int arr[], int left, int right)
+void merge_sort(int *arr, int size)
 {
-	if(left<right)
+	int i,mid,*left,*right;
+	if(size<2)
 	{
-		int mid=left+(right-left)/2;
-		merge_sort(arr, left, mid);
-		merge_sort(arr, mid+1, right);
-		merge(arr, left, mid, right);
+		return;
 	}
+	mid=size/2;
+	left=malloc(mid* sizeof(int));
+	right=malloc((size-mid)*sizeof(int));
+	for(i=0;i<mid;i++)
+	{
+		left[i]=arr[i];
+	}
+	for(i=mid;i<size;i++)
+	{
+		right[i-mid]=arr[i];
+	}
+	merge_sort(left,mid);
+	merge_sort(right,size-mid);
+	merge(arr,left,mid,right,size-mid);
 }
 int main()
 {
-	int arr[]={3,6,2,4,5,1};
+	int arr[]={3,6,2,4,5,1,8,7};
 	int s=sizeof(arr)/sizeof(arr[0]);
-	int i=0;
-	merge_sort(arr, 0, s-1);
+	int i;
+	merge_sort(arr,s);
 	for(i=0;i<s;i++)
 	{
 		printf("%d ",arr[i]);
