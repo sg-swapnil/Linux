@@ -1,1 +1,0 @@
-savedcmd_/home/mirafra/sg/Linux/test_module/test_mod.ko := ld -r -m elf_x86_64 -z noexecstack --build-id=sha1  -T scripts/module.lds -o /home/mirafra/sg/Linux/test_module/test_mod.ko /home/mirafra/sg/Linux/test_module/test_mod.o /home/mirafra/sg/Linux/test_module/test_mod.mod.o
