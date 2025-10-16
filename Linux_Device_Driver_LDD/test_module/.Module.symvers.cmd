@@ -1,0 +1,1 @@
+savedcmd_/home/mirafra/sg/Linux/LDD/test_module/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/mirafra/sg/Linux/LDD/test_module/Module.symvers -T /home/mirafra/sg/Linux/LDD/test_module/modules.order -i Module.symvers -e 
