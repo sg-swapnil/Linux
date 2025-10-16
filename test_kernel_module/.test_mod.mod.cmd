@@ -1,0 +1,1 @@
+savedcmd_/home/mirafra/sg/Linux/test_module/test_mod.mod := printf '%s\n'   test_mod.o | awk '!x[$$0]++ { print("/home/mirafra/sg/Linux/test_module/"$$0) }' > /home/mirafra/sg/Linux/test_module/test_mod.mod
